@@ -25,31 +25,18 @@ db_option: {
 	| PRECISION {'ms' | 'us' | 'ns'}
 }
 ```
+
+## **修改数据库参数**
+```sql
+todo!()
+```
+
 ### 参数说明
 1. TTL： 表示数据文件保存的时间，默认为365天，用带单位的数据表示，支持天（d），小时（h），分钟（m），如TTL 10d，TTL 50h，TTL 100m，当不带单位时，默认为天，如TTL 30
 2. SHARD：表示数据分片个数，默认为1
 3. VNODE_DURATION：表示数据在shard中的时间范围，同样适用带单位的数据表示，表示意义与TTL一致
 4. REPLICA： 表示数据在集群中的副本数，默认为1
 5. PRECISION：数据库的时间戳精度，ms 表示毫秒，us 表示微秒，ns 表示纳秒，默认为ns纳秒
-
-## **CREATE SCHEMA**
-
-```sql
-CREATE SCHEMA [ IF NOT EXISTS ] schema_name
-```
-
-## **CREATE MEMORY TABLE**
-
-```sql
-CREATE [ OR REPLACE ] TABLE [ IF NOT EXISTS ] table_name
-AS
-{ SELECT | VALUES LIST }
-
-eg.
-CREATE TABLE valuetable AS VALUES(1,'HELLO'),(12,'DATAFUSION');
-
-CREATE TABLE memtable as select * from valuetable;
-```
 
 ## **CREATE EXTERNAL** **TABLE**
 
@@ -70,11 +57,6 @@ STORED AS { PARQUET | NDJSON | CSV | AVRO }
 LOCATION '/path/to/file'
 ```
 
-## **CREATE VIEW**
-
-```sql
-CREATE [ OR REPLACE ] VIEW view_name AS { SELECT | VALUES LIST }
-```
 
 ## **创建表**
 ```sql
@@ -95,7 +77,7 @@ field_name field_type [field_codec_type]
     * BOOLEAN：BIPACK，NULL
 
 
-## **DROP TABLE**
+## **删除表**
 
 ```sql
 -- We don't support cascade and purge for now.
